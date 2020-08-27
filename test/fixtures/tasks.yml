@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner: MyString
+  text: MyText
+  importance: MyString
+  resolved: false
+  board: one
+  user: one
+
+two:
+  owner: MyString
+  text: MyText
+  importance: MyString
+  resolved: false
+  board: two
+  user: two
