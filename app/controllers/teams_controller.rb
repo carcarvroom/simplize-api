@@ -1,12 +1,12 @@
 class TeamsController < ApplicationController
     
-    def index
-        teams = Team.all
-        render json: teams
+    def show
+        team = Team.all_team_members(params[:id])
+        render json: TeamSerializer.new(team)
     end
 
-    def show
-        team = Team.find(params[:id])
-        render json: team
-    end
+    def destroy 
+        team = Team.find(params[:id]).destroy
+    end 
+
 end

@@ -1,5 +1,12 @@
 class Team < ApplicationRecord
-  has_many :users
   has_many :boards
-  accepts_nested_attributes_for :users
+  has_many :users, through: :boards
+
+  def self.all_team_members(team_id)
+    team_boards = Board.all.find_all do |board|
+      board.team_id === team_id
+    end
+    # members = team_boards.
+  end
+
 end
