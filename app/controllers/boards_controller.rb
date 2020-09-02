@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
     end
 
     def show
-        board = Board.find(params[:id])
+        board = Board.boards_by_team(team_id: params[:team_id])
         render json: BoardSerializer.new(board)
     end
 

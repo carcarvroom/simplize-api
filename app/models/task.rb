@@ -11,7 +11,7 @@ class Task < ApplicationRecord
 
   def self.unresolved_tasks
     tasks = Task.all.filter do |task|
-      task.resolved === false
+      !task.resolved
     end
   end
 
