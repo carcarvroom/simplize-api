@@ -1,20 +1,16 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:new, :create]
+    skip_before_action :authorized, only: [:create, :login]
 
     def index
         users = User.all
         render json: users
     end
     
-    def new
-        user = User.new
-    end
-    
     def create
-        @user = User.create(user_params)
-        if @user.valid?
+        @user = User.new(user_params)
+        if @user.save 
             token = encode_token({user_id: @user.id})
-            render json: {user: @user, token: token}
+            render json: {user: UserSerializer.new(@user), token: token}
         else
             render json: {error: "Invalid username or password"}
         end
@@ -24,28 +20,15 @@ class UsersController < ApplicationController
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
             token = encode_token({user_id: @user.id})
-            render json: {user: @user, token: token}
+            render json: {user: UserSerializer.new(@user), token: token}
         else
             render json: {error: "Invalid username or password"}
         end
     end
     
     def auto_login
-        render json: @user
-    end
-
-    # def persist
-    #     # token = encode_token({user_id: @user.id})
-    #     render json: {user: UserSerializer.new(@user), token: token}
-    # end
-    
-    def show
-        user = User.find(params[:id])
-        render json: UserSerializer.new(user)
-    end
-
-    def edit
-        user = User.find(params[:id])
+        token = encode_token({user_id: @user.id})
+        render json: {user: UserSerializer.new(@user), token: token}
     end
 
     def update 
