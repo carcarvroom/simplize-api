@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_172912) do
+ActiveRecord::Schema.define(version: 2020_09_04_162901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,16 +18,14 @@ ActiveRecord::Schema.define(version: 2020_08_27_172912) do
   create_table "boards", force: :cascade do |t|
     t.string "name"
     t.string "board_type"
-    t.bigint "user_id", null: false
-    t.bigint "team_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "team_id", null: false
     t.index ["team_id"], name: "index_boards_on_team_id"
-    t.index ["user_id"], name: "index_boards_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "text"
+    t.text "description"
     t.bigint "user_id", null: false
     t.bigint "task_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -36,34 +34,53 @@ ActiveRecord::Schema.define(version: 2020_08_27_172912) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "tasks", force: :cascade do |t|
-    t.integer "owner_id"
-    t.text "text"
-    t.string "importance"
-    t.boolean "resolved"
+  create_table "lists", force: :cascade do |t|
+    t.string "name"
     t.bigint "board_id", null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["board_id"], name: "index_tasks_on_board_id"
-    t.index ["user_id"], name: "index_tasks_on_user_id"
+    t.index ["board_id"], name: "index_lists_on_board_id"
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_members_on_team_id"
+    t.index ["user_id"], name: "index_members_on_user_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer "owner_id"
+    t.text "description"
+    t.string "priority"
+    t.string "status"
+    t.boolean "resolved"
+    t.bigint "list_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["list_id"], name: "index_tasks_on_list_id"
   end
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.string "organization"
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "address"
     t.string "organization"
+    t.string "position"
     t.string "location"
     t.string "profile_img"
     t.string "description"
-    t.string "email"
+    t.string "age"
     t.string "username"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
@@ -71,9 +88,10 @@ ActiveRecord::Schema.define(version: 2020_08_27_172912) do
   end
 
   add_foreign_key "boards", "teams"
-  add_foreign_key "boards", "users"
   add_foreign_key "comments", "tasks"
   add_foreign_key "comments", "users"
-  add_foreign_key "tasks", "boards"
-  add_foreign_key "tasks", "users"
+  add_foreign_key "lists", "boards"
+  add_foreign_key "members", "teams"
+  add_foreign_key "members", "users"
+  add_foreign_key "tasks", "lists"
 end

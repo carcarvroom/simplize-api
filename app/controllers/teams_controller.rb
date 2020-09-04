@@ -1,12 +1,20 @@
 class TeamsController < ApplicationController
-    
-    def show
-        team = Team.all_team_members(params[:id])
-        render json: TeamSerializer.new(team)
-    end
+  def show
+    team = Team.all_team_members(params[:id])
+    render json: TeamSerializer.new(team)
+  end
 
-    def destroy 
-        team = Team.find(params[:id]).destroy
-    end 
+  def update 
+    team = Team.find(params[:id])
+    team.update(team_params)
+  end
 
+  def destroy 
+    team = Team.find(params[:id]).destroy
+  end 
+
+  private
+  def team_params
+    params.permit(:name, :organization)
+  end
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :lists
   resources :comments, only: [:index, :show, :create, :update, :destroy]
   resources :tasks, only: [:index, :show, :create, :update, :destroy]
   resources :boards, only: [:index, :show, :create, :update, :destroy]

@@ -30,6 +30,6 @@ class BoardsController < ApplicationController
 
     private
     def board_params
-        params.permit(:text, :task_id, :user_id)
+        params.permit(:name, :board_type)
     end
 end

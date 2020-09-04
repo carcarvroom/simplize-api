@@ -25,4 +25,28 @@
 # comment3 = Comment.create(text: "comment3", user_id: 1, task_id: 5)
 # comment4 = Comment.create(text: "comment4", user_id: 2, task_id: 5)
 
+# User.destroy_all
+# Team.destroy_all
+# Board.destroy_all
+# List.destroy_all
+# Task.destroy_all
+
+# user = User.create(first_name: 'Leslie', last_name: 'Knope', username: 'leslie', password: '123', email: 'leslie@pawnee.com')
+# user2 = User.create(first_name: 'Ron', last_name: 'Swanson', username: 'ron', password: '123', email: 'ron@pawnee.com')
+team = Team.create(name: "Task Force", organization: "Pawnee Dept of Parks and Recreation")
+
+member1 = Member.create(user: User.first, team: team)
+member1 = Member.create(user: User.second, team: team)
+
+board = Board.create(name: 'Pit', board_type: 'taskboard', team: team)
+
+
+list = List.create(name: "To do", board: board)
+
+task = Task.create(list: list, description: "Fill pit", resolved: false, priority: 'high', status: 'pending', owner_id: 1)
+
+comment = Comment.create(description: 'We got this team!', user: User.first, task: task)
+
+
+
 puts "Seeds completed!"
