@@ -1,7 +1,13 @@
 class TeamsController < ApplicationController
+  # skip_before_action :authorized, only: [:show]
+
   def show
-    team = Team.find(params[:id])
-    render json: TeamSerializer.new(team)
+    teams = Team.my_teams(params[:id])
+    if teams.empty?
+      render json: {error: "No teams"}
+    else
+      render json: teams, each_serializer: TeamSerializer
+    end
   end
 
   def update 
