@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   post '/login', to: 'users#login'
   post '/signup', to: 'users#create'
   get '/auto_login', to: 'users#auto_login'
+
+  get '/my_boards/:id/:type', to: 'boards#my_boards_by_type'
 end

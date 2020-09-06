@@ -1,13 +1,8 @@
 class BoardsController < ApplicationController
-    
-    def index
-        boards = Board.all
-        render json: BoardSerializer.new(boards)
-    end
 
-    def show
-        board = Board.boards_by_team(team_id: params[:team_id])
-        render json: BoardSerializer.new(board)
+    def my_boards_by_type
+        boards = Board.get_boards_by_type(params[:id], params[:type])
+        render json: boards, each_serializer: BoardSerializer
     end
 
     def create
@@ -30,6 +25,6 @@ class BoardsController < ApplicationController
 
     private
     def board_params
-        params.permit(:name, :board_type)
+        params.permit(:name, :board_type, :team_id, :user_id)
     end
 end

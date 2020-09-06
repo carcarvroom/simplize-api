@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :members
   has_many :teams, through: :members
   has_many :comments
+  has_many :boards
 
   has_secure_password
   validates :username, uniqueness: true

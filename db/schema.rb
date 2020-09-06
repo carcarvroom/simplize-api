@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_06_001351) do
+ActiveRecord::Schema.define(version: 2020_09_06_055915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,9 @@ ActiveRecord::Schema.define(version: 2020_09_06_001351) do
     t.bigint "list_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "board_id"
+    t.string "title"
+    t.index ["board_id"], name: "index_tasks_on_board_id"
     t.index ["list_id"], name: "index_tasks_on_list_id"
   end
 
@@ -96,5 +99,6 @@ ActiveRecord::Schema.define(version: 2020_09_06_001351) do
   add_foreign_key "lists", "boards"
   add_foreign_key "members", "teams"
   add_foreign_key "members", "users"
+  add_foreign_key "tasks", "boards"
   add_foreign_key "tasks", "lists"
 end

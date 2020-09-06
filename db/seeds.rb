@@ -39,6 +39,10 @@ member1 = Member.create(user: User.first, team: team)
 member1 = Member.create(user: User.second, team: team)
 
 board = Board.create(name: 'Pit', board_type: 'taskboard', team: team)
+board2 = Board.create(name: 'Pawnee Town Hall Issues', board_type: 'issueboard', team: Team.first)
+
+leslieIssueBoard = Board.create(name: 'Ann Perkins', board_type: 'issueboard', user: User.first)
+leslieTaskBoard = Board.create(name: 'Organize House', board_type: 'taskboard', user: User.first)
 
 
 list = List.create(name: "To do", board: board)

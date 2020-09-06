@@ -1,5 +1,12 @@
 class TaskSerializer < ActiveModel::Serializer
-  attributes :id, :owner_id, :text, :importance, :resolved
-  has_one :board
-  has_one :user
+  attributes :id, :title, :owner_id, :description, :priority, :resolved, :status, :created_at, :updated_at
+
+  def priority
+    self.object.priority.capitalize
+  end
+
+  def status
+    self.object.status.capitalize
+  end
+
 end
