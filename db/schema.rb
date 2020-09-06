@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 2020_09_06_001351) do
 
   create_table "comments", force: :cascade do |t|
     t.text "description"
-    t.bigint "user_id", null: false
-    t.bigint "task_id", null: false
+    t.bigint "user_id"
+    t.bigint "task_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["task_id"], name: "index_comments_on_task_id"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_001351) do
     t.string "priority"
     t.string "status"
     t.boolean "resolved"
-    t.bigint "list_id", null: false
+    t.bigint "list_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["list_id"], name: "index_tasks_on_list_id"
