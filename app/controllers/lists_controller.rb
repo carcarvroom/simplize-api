@@ -1,35 +1,30 @@
 class ListsController < ApplicationController
-  def index
-    lists = List.all
-    render json: ListSerializer.new(lists)
-end
-
-def show
-    list = list.find(params[:id])
-    render json: ListSerializer.new(list)
-end
-
-def create
-    list = List.create(list_params)
-    if list.valid?
-      render json: ListSerializer.new(list)
-  else
-      render json: {error: list.errors.full_messages}
+  def create
+      list = List.create(list_params)
+      if list.valid?
+        render json: {list: ListSerializer.new(list)}
+    else
+        render json: {error: list.errors.full_messages}
+    end
   end
-end
 
-def update 
-    list = List.find(params[:id])
-    list.update(list_params)
-end
+  def lists_by_board_id
+    lists = List.lists_by_id(params[:board_id])
+    render json: lists, each_serializer: ListSerializer
+  end
 
-def destroy 
-    list = List.find(params[:id]).destroy
-end 
+  def update 
+      list = List.find(params[:id])
+      list.update(list_params)
+  end
 
-private
-def list_params
-    params.permit(:text, :task_id, :user_id)
-end
+  def destroy 
+      list = List.find(params[:id]).destroy
+  end 
+
+  private
+  def list_params
+      params.permit(:name, :board_id, :position)
+  end
 
 end
