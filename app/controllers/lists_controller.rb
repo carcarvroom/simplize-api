@@ -1,10 +1,10 @@
 class ListsController < ApplicationController
   def create
-      list = List.create(list_params)
-      if list.valid?
-        render json: {list: ListSerializer.new(list)}
+    list = List.create(list_params)
+    if list.valid?
+      render json: {list: ListSerializer.new(list)}
     else
-        render json: {error: list.errors.full_messages}
+      render json: {error: list.errors.full_messages}
     end
   end
 
@@ -14,17 +14,17 @@ class ListsController < ApplicationController
   end
 
   def update 
-      list = List.find(params[:id])
-      list.update(list_params)
+    list = List.find(params[:id])
+    list.update(list_params)
   end
 
   def destroy 
-      list = List.find(params[:id]).destroy
+    list = List.find(params[:id]).destroy
   end 
 
   private
   def list_params
-      params.permit(:name, :board_id, :position)
+    params.permit(:name, :board_id, :position)
   end
 
 end
