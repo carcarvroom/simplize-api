@@ -11,6 +11,7 @@ class TasksController < ApplicationController
   def update 
     task = Task.find(params[:id])
     task.update(task_params)
+    render json: {task: TaskSerializer.new(task)}
   end
 
   def destroy 
