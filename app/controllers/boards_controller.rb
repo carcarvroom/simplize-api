@@ -17,6 +17,7 @@ class BoardsController < ApplicationController
   def update 
     board = Board.find(params[:id])
     board.update(board_params)
+    render json: {board: BoardSerializer.new(board)}
   end
 
   def destroy 
