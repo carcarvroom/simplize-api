@@ -16,6 +16,7 @@ class ListsController < ApplicationController
   def update 
     list = List.find(params[:id])
     list.update(list_params)
+    render json: {list: ListSerializer.new(list)}
   end
 
   def destroy 
