@@ -1,5 +1,5 @@
 # Simplize
-  ![Simplize logo](./src/assets/img/brand/blue-simplize-logo.png)
+  ![Simplize logo](./blue-simplize-logo.png)
 
 ## Description
   Simplize your life and organize your projects with our managing tools which include idea bulletin boards, task boards, issue tracking and more! These tools can help you organize your ideas, plans, and issues in the workplace or even at home!
