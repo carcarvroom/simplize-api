@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :lists
-  resources :comments, only: [:index, :show, :create, :update, :destroy]
-  resources :tasks, only: [:index, :show, :create, :update, :destroy]
-  resources :boards, only: [:index, :show, :create, :update, :destroy]
+  resources :lists, only: [:create, :update, :destroy]
+  resources :comments, only: [:create, :update, :destroy]
+  resources :tasks, only: [:create, :update, :destroy]
+  resources :boards, only: [:create, :update, :destroy]
   resources :teams, only: [:show, :destroy]
   resources :users, only: [:create, :update, :destroy]
   post '/login', to: 'users#login'
