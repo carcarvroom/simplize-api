@@ -1,4 +1,7 @@
 class Team < ApplicationRecord
+  include PublicActivity::Model
+  tracked
+  
   has_many :members
   has_many :users, through: :members
   has_many :boards

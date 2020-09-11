@@ -1,4 +1,7 @@
 class Board < ApplicationRecord
+  include PublicActivity::Model
+  tracked
+  
   has_many :lists
   has_many :tasks
   belongs_to :team, optional: true

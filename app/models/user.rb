@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include PublicActivity::Model
+  tracked
+  
   has_many :members
   has_many :teams, through: :members
   has_many :comments
