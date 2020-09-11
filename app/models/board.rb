@@ -3,7 +3,7 @@ class Board < ApplicationRecord
   tracked
   
   has_many :lists
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
   belongs_to :team, optional: true
   belongs_to :user, optional: true
 
