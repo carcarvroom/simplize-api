@@ -104,7 +104,24 @@
 
 ## Demo
 
-  Coming soon!
+### Register/Login/Dashboard
+![Register/Login/Dashboard Demo](https://thumbs.gfycat.com/GiantMelodicHedgehog-size_restricted.gif)
+
+### Teams/Edit Profile
+![Teams/Edit Profile Demo](https://thumbs.gfycat.com/AthleticScientificChanticleer-size_restricted.gif)
+
+### Idea Board
+![Idea Board Demo](https://thumbs.gfycat.com/RightIncomparableKawala-size_restricted.gif)
+
+### Task Board
+![Task Board Demo](https://thumbs.gfycat.com/DifficultHeftyChupacabra-size_restricted.gif)
+
+### Issue Board
+![Issue Board Demo](https://thumbs.gfycat.com/GoodnaturedGrippingDanishswedishfarmdog-size_restricted.gif)
+
+### UI Scalability
+![UI Scalability Demo](https://thumbs.gfycat.com/ElatedSimplisticArachnid-size_restricted.gif)
+
 
 ## Technologies Used
 
